@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">跟拍练 (FollowBeat) - 技术支持与帮助中心 | Support & Help</title>
+  <style>
+    :root {
+      --bg-color: #0D0D1A;
+      --card-bg: #1A1A2E;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary-gradient: linear-gradient(135deg, #FF6B35 0%, #FF3D00 100%);
+      --accent-yellow: #FFB800;
+      --text-main: #FFFFFF;
+      --text-muted: #9E9EB8;
+      --text-dim: #5C5C7A;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 20px 60px 20px;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* Top Nav with Language Switcher */
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px 0 0 0;
+    }
+
+    .lang-switcher {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--primary-gradient);
+      color: #FFFFFF;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(255, 61, 0, 0.3);
+    }
+
+    .lang-btn:hover:not(.active) {
+      color: #FFFFFF;
+    }
+
+    /* Header & Hero */
+    header {
+      text-align: center;
+      padding: 30px 0 40px 0;
+    }
+
+    .app-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 20px;
+      background: var(--primary-gradient);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 32px rgba(255, 61, 0, 0.35);
+      margin-bottom: 20px;
+    }
+
+    .app-icon svg {
+      width: 48px;
+      height: 48px;
+      fill: #fff;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #D4D4E8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 540px;
+      margin: 0 auto 24px auto;
+    }
+
+    .badge-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge span {
+      color: var(--accent-yellow);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-title svg {
+      width: 22px;
+      height: 22px;
+      fill: #FF6B35;
+    }
+
+    /* Contact Buttons */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .contact-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px;
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+
+    .contact-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 107, 53, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255, 107, 53, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .contact-text strong {
+      display: block;
+      font-size: 0.95rem;
+    }
+
+    .contact-text span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* FAQ Accordion */
+    .faq-item {
+      border-bottom: 1px solid var(--card-border);
+      padding: 18px 0;
+    }
+
+    .faq-item:first-child {
+      padding-top: 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .faq-question {
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-question:hover {
+      color: #FF6B35;
+    }
+
+    .faq-arrow {
+      transition: transform 0.3s ease;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .faq-item.active .faq-arrow {
+      transform: rotate(180deg);
+      color: #FF6B35;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 350px;
+      padding-top: 12px;
+    }
+
+    /* Privacy Brief */
+    .privacy-text {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding-top: 30px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    footer a:hover {
+      color: #FF6B35;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Top Bar with Language Switcher -->
+    <div class="top-nav">
+      <div class="lang-switcher">
+        <button class="lang-btn active" id="btn-zh" onclick="switchLanguage('zh')">中文</button>
+        <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">English</button>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <div class="app-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
+        </svg>
+      </div>
+      <h1 id="app-title">跟拍练 (FollowBeat)</h1>
+      <p class="subtitle" id="app-subtitle">运动节拍与节奏健身打卡 · 技术支持与帮助中心</p>
+      
+      <div class="badge-container">
+        <div class="badge"><span id="badge-1-icon">⚡</span> <span id="badge-1">极简无广告</span></div>
+        <div class="badge"><span id="badge-2-icon">☁️</span> <span id="badge-2">iCloud 私有数据同步</span></div>
+        <div class="badge"><span id="badge-3-icon">🎯</span> <span id="badge-3">自由定制节奏</span></div>
+      </div>
+    </header>
+
+    <!-- Support / Contact Card -->
+    <div class="card">
+      <h2 class="card-title">
+        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/></svg>
+        <span id="contact-title">联系支持与问题反馈 (Contact Support)</span>
+      </h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem;" id="contact-desc">
+        如果您在使用「跟拍练」过程中遇到任何 Bug、体验问题或有新的功能建议，欢迎通过以下渠道随时联系我们，我们通常会在 24 小时内回复并处理。
+      </p>
+
+      <div class="contact-grid">
+        <!-- 提交 Issue -->
+        <a href="mailto:dudulu.moe@gmail.com?subject=%E3%80%90%E8%B7%9F%E6%8B%8D%E7%BB%83%E3%80%91%E9%97%AE%E9%A2%98%E4%B8%8EBug%E5%8F%8D%E9%A6%88" class="contact-btn" id="issue-btn">
+          <div class="contact-info">
+            <div class="contact-icon">🐛</div>
+            <div class="contact-text">
+              <strong id="issue-text-strong">提交 Issue</strong>
+              <span id="issue-text-span">问题与 Bug 反馈</span>
+            </div>
+          </div>
+          <span style="color: var(--text-dim);">→</span>
+        </a>
+
+        <!-- 反馈意见 -->
+        <a href="mailto:dudulu.moe@gmail.com?subject=%E3%80%90%E8%B7%9F%E6%8B%8D%E7%BB%83%E3%80%91%E4%BA%A7%E5%93%81%E5%BB%BA%E8%AE%AE%E4%B8%8E%E6%84%8F%E8%A7%81%E5%8F%8D%E9%A6%88" class="contact-btn" id="feedback-btn">
+          <div class="contact-info">
+            <div class="contact-icon">💡</div>
+            <div class="contact-text">
+              <strong id="feedback-text-strong">反馈意见</strong>
+              <span id="feedback-text-span">功能建议与体验优化</span>
+            </div>
+          </div>
+          <span style="color: var(--text-dim);">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="card">
+      <h2 class="card-title">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+        <span id="faq-title">常见问题解答 (FAQ)</span>
+      </h2>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span id="faq-q1">1. 什么是“节拍”、“章节”和“动作”？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer" id="faq-a1">
+          「跟拍练」采用清晰的三层结构：一个【节拍 (Beat)】包含若干个【章节 (Section)】，每个章节包含一组【动作 (Action)】。每个章节可设置独立的循环重复次数（例如重复 3 组），让您可以轻松拼装出如“热身节 + 核心训练节 + 放松拉伸节”的完整训练。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span id="faq-q2">2. 训练时没有语音播报声音怎么办？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer" id="faq-a2">
+          请依次检查：<br>
+          ① 确认 iPhone 侧边静音按键未开启，且媒体音量调至合适大小；<br>
+          ② 检查系统设置中是否允许了声音播放；<br>
+          ③ 在 App 的节拍设置中确认动作已配置了名称或启用了数字数拍。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span id="faq-q3">3. 「简单模式」与「自定义模式」有什么区别？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer" id="faq-a3">
+          在创建或编辑章节时，您可以自由选择模式：<br>
+          • <strong>简单模式</strong>：适合纯数字节拍训练，系统会自动以 1、2、3、4 等数字序号进行视觉展示与实时语音数拍；<br>
+          • <strong>自定义模式</strong>：适合动作组合训练，支持为每个动作自定义专属名称、方向箭头指引（如向上、向下、左滑、右滑等）以及精确的单动作时长。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span id="faq-q4">4. 更换新手机或多设备使用，数据会丢失吗？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer" id="faq-a4">
+          不会。「跟拍练」默认支持 Apple iCloud 私有数据自动同步。只要您的设备登录了相同的 Apple ID 并开启 iCloud Drive，您创建的专属节拍与打卡历史将在多台 iOS 设备间无缝自动同步与备份。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span id="faq-q5">5. 如何创建自己的专属节拍？</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer" id="faq-a5">
+          在底部导航栏进入「我的节拍」或点击「+」新建节拍，您可以自由设定准备倒计时时长、添加章节、设置动作名称、方向箭头指引以及每个动作的精确秒数（支持 0.5 秒 ~ 600 秒）。
+        </div>
+      </div>
+    </div>
+
+    <!-- Privacy Summary -->
+    <div class="card">
+      <h2 class="card-title">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+        <span id="privacy-title">用户隐私承诺 (Privacy Policy)</span>
+      </h2>
+      <p class="privacy-text" id="privacy-desc">
+        <strong>我们极为尊重您的个人隐私：</strong><br>
+        • 「跟拍练 (FollowBeat)」不要求注册第三方账号，不收集您的任何个人身份敏感信息。<br>
+        • 您的所有运动计划、节拍配置与历史打卡记录均完全存储在您的本地设备及属于您个人的私有 Apple iCloud 容器中。<br>
+        • 我们绝不追踪、出售或向任何第三方分享您的个人运动数据。
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p id="footer-copy">© 2026 FollowBeat. All Rights Reserved.</p>
+      <p style="margin-top: 6px;" id="footer-tagline">
+        Designed with precision for iOS.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Script: Language Translation & FAQ Interaction -->
+  <script>
+    const i18nData = {
+      zh: {
+        pageTitle: "跟拍练 (FollowBeat) - 技术支持与帮助中心 | Support & Help",
+        appTitle: "跟拍练 (FollowBeat)",
+        appSubtitle: "运动节拍与节奏健身打卡 · 技术支持与帮助中心",
+        badge1: "极简无广告",
+        badge2: "iCloud 私有数据同步",
+        badge3: "自由定制节奏",
+        contactTitle: "联系支持与问题反馈 (Contact Support)",
+        contactDesc: "如果您在使用「跟拍练」过程中遇到任何 Bug、体验问题或有新的功能建议，欢迎通过以下渠道随时联系我们，我们通常会在 24 小时内回复并处理。",
+        issueStrong: "提交 Issue",
+        issueSpan: "问题与 Bug 反馈",
+        issueSubject: "【跟拍练】问题与Bug反馈",
+        feedbackStrong: "反馈意见",
+        feedbackSpan: "功能建议与体验优化",
+        feedbackSubject: "【跟拍练】产品建议与意见反馈",
+        faqTitle: "常见问题解答 (FAQ)",
+        faqQ1: "1. 什么是“节拍”、“章节”和“动作”？",
+        faqA1: "「跟拍练」采用清晰的三层结构：一个【节拍 (Beat)】包含若干个【章节 (Section)】，每个章节包含一组【动作 (Action)】。每个章节可设置独立的循环重复次数（例如重复 3 组），让您可以轻松拼装出如“热身节 + 核心训练节 + 放松拉伸节”的完整训练。",
+        faqQ2: "2. 训练时没有语音播报声音怎么办？",
+        faqA2: "请依次检查：<br>① 确认 iPhone 侧边静音按键未开启，且媒体音量调至合适大小；<br>② 检查系统设置中是否允许了声音播放；<br>③ 在 App 的节拍设置中确认动作已配置了名称或启用了数字数拍。",
+        faqQ3: "3. 「简单模式」与「自定义模式」有什么区别？",
+        faqA3: "在创建或编辑章节时，您可以自由选择模式：<br>• <strong>简单模式</strong>：适合纯数字节拍训练，系统会自动以 1、2、3、4 等数字序号进行视觉展示与实时语音数拍；<br>• <strong>自定义模式</strong>：适合动作组合训练，支持为每个动作自定义专属名称、方向箭头指引（如向上、向下、左滑、右滑等）以及精确的单动作时长。",
+        faqQ4: "4. 更换新手机或多设备使用，数据会丢失吗？",
+        faqA4: "不会。「跟拍练」默认支持 Apple iCloud 私有数据自动同步。只要您的设备登录了相同的 Apple ID 并开启 iCloud Drive，您创建的专属节拍与打卡历史将在多台 iOS 设备间无缝自动同步与备份。",
+        faqQ5: "5. 如何创建自己的专属节拍？",
+        faqA5: "在底部导航栏进入「我的节拍」或点击「+」新建节拍，您可以自由设定准备倒计时时长、添加章节、设置动作名称、方向箭头指引以及每个动作的精确秒数（支持 0.5 秒 ~ 600 秒）。",
+        privacyTitle: "用户隐私承诺 (Privacy Policy)",
+        privacyDesc: "<strong>我们极为尊重您的个人隐私：</strong><br>• 「跟拍练 (FollowBeat)」不要求注册第三方账号，不收集您的任何个人身份敏感信息。<br>• 您的所有运动计划、节拍配置与历史打卡记录均完全存储在您的本地设备及属于您个人的私有 Apple iCloud 容器中。<br>• 我们绝不追踪、出售或向任何第三方分享您的个人运动数据。",
+        footerCopy: "© 2026 FollowBeat. All Rights Reserved.",
+        footerTagline: "Designed with precision for iOS."
+      },
+      en: {
+        pageTitle: "FollowBeat - Support & Help Center",
+        appTitle: "FollowBeat",
+        appSubtitle: "Rhythm-guided workout metronome & streak tracking · Support & Help",
+        badge1: "Pure & Ad-Free",
+        badge2: "Private iCloud Sync",
+        badge3: "Customizable Beats",
+        contactTitle: "Contact Support & Feedback",
+        contactDesc: "If you encounter any bugs, experience issues, or have feature requests while using FollowBeat, please reach out via email. We typically respond within 24 hours.",
+        issueStrong: "Submit Issue",
+        issueSpan: "Bug Report & Troubleshooting",
+        issueSubject: "[FollowBeat] Issue & Bug Report",
+        feedbackStrong: "Send Feedback",
+        feedbackSpan: "Feature Requests & Ideas",
+        feedbackSubject: "[FollowBeat] Feedback & Feature Request",
+        faqTitle: "Frequently Asked Questions (FAQ)",
+        faqQ1: "1. What are Beats, Sections, and Actions?",
+        faqA1: "FollowBeat uses an intuitive 3-tier structure: A <strong>Beat</strong> consists of multiple <strong>Sections</strong>, and each Section contains a sequence of <strong>Actions</strong>. Each section can have its own repeat count (e.g. 3 sets), allowing you to assemble full workouts like Warmup → Core → Cooldown with ease.",
+        faqQ2: "2. What should I do if there is no audio during workouts?",
+        faqA2: "Please check the following:<br>① Ensure the iPhone hardware mute switch is turned off and the media volume is turned up.<br>② Ensure system notification and audio permissions are enabled.<br>③ Ensure your custom actions have names configured or numeric counting is enabled.",
+        faqQ3: "3. What is the difference between Simple Mode and Custom Mode?",
+        faqA3: "When creating or editing a section, you can choose between two modes:<br>• <strong>Simple Mode</strong>: Best for fast counting rhythms. Actions are automatically numbered (1, 2, 3, 4) with clear visual cues and voice counting.<br>• <strong>Custom Mode</strong>: Best for structured exercise sets. Allows you to set custom action names, directional arrow indicators (up, down, left, right), and precise durations.",
+        faqQ4: "4. Will my data be lost if I switch to a new device?",
+        faqA4: "No. FollowBeat supports automatic Apple iCloud private database sync by default. As long as your device is signed in to the same Apple ID with iCloud Drive enabled, your custom beats and workout streaks will sync seamlessly across your iOS devices.",
+        faqQ5: "5. How do I create a custom beat?",
+        faqA5: "Navigate to the \"My Beats\" tab in the bottom bar or tap the \"+\" button. You can customize preparation countdown times, add sections, configure action names, select directional arrows, and define precise duration per action (0.5s to 600s).",
+        privacyTitle: "Privacy Policy Summary",
+        privacyDesc: "<strong>Your privacy is our utmost priority:</strong><br>• FollowBeat does not require third-party accounts and collects no personal identifiable data.<br>• All workout plans, custom beats, and training records are strictly stored locally on your device and inside your private Apple iCloud container.<br>• We never track, sell, or share your fitness data with any third parties.",
+        footerCopy: "© 2026 FollowBeat. All Rights Reserved.",
+        footerTagline: "Designed with precision for iOS."
+      }
+    };
+
+    function switchLanguage(lang) {
+      const data = i18nData[lang] || i18nData.zh;
+      
+      document.getElementById('page-title').innerText = data.pageTitle;
+      document.getElementById('app-title').innerText = data.appTitle;
+      document.getElementById('app-subtitle').innerText = data.appSubtitle;
+      document.getElementById('badge-1').innerText = data.badge1;
+      document.getElementById('badge-2').innerText = data.badge2;
+      document.getElementById('badge-3').innerText = data.badge3;
+
+      document.getElementById('contact-title').innerText = data.contactTitle;
+      document.getElementById('contact-desc').innerText = data.contactDesc;
+      document.getElementById('issue-text-strong').innerText = data.issueStrong;
+      document.getElementById('issue-text-span').innerText = data.issueSpan;
+      document.getElementById('feedback-text-strong').innerText = data.feedbackStrong;
+      document.getElementById('feedback-text-span').innerText = data.feedbackSpan;
+
+      document.getElementById('issue-btn').href = `mailto:dudulu.moe@gmail.com?subject=${encodeURIComponent(data.issueSubject)}`;
+      document.getElementById('feedback-btn').href = `mailto:dudulu.moe@gmail.com?subject=${encodeURIComponent(data.feedbackSubject)}`;
+
+      document.getElementById('faq-title').innerText = data.faqTitle;
+      document.getElementById('faq-q1').innerText = data.faqQ1;
+      document.getElementById('faq-a1').innerHTML = data.faqA1;
+      document.getElementById('faq-q2').innerText = data.faqQ2;
+      document.getElementById('faq-a2').innerHTML = data.faqA2;
+      document.getElementById('faq-q3').innerText = data.faqQ3;
+      document.getElementById('faq-a3').innerHTML = data.faqA3;
+      document.getElementById('faq-q4').innerText = data.faqQ4;
+      document.getElementById('faq-a4').innerHTML = data.faqA4;
+      document.getElementById('faq-q5').innerText = data.faqQ5;
+      document.getElementById('faq-a5').innerHTML = data.faqA5;
+
+      document.getElementById('privacy-title').innerText = data.privacyTitle;
+      document.getElementById('privacy-desc').innerHTML = data.privacyDesc;
+      document.getElementById('footer-copy').innerText = data.footerCopy;
+      document.getElementById('footer-tagline').innerText = data.footerTagline;
+
+      // Update button active state
+      document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+      // Save preference
+      localStorage.setItem('followbeat_lang', lang);
+    }
+
+    // Auto detect language on page load
+    (function initLanguage() {
+      const savedLang = localStorage.getItem('followbeat_lang');
+      if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
+        switchLanguage(savedLang);
+      } else {
+        const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (browserLang.startsWith('zh')) {
+          switchLanguage('zh');
+        } else {
+          switchLanguage('en');
+        }
+      }
+    })();
+
+    // Accordion interaction
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
