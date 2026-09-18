@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="page-title">跟拍练 (FollowBeat) - 隐私政策 | Privacy Policy</title>
+  <title id="page-title">FollowBeat - Privacy Policy</title>
   <style>
     :root {
       --bg-color: #0D0D1A;
@@ -191,8 +191,8 @@
     <!-- Language Switcher -->
     <div class="top-nav">
       <div class="lang-switcher">
-        <button class="lang-btn active" id="btn-zh" onclick="switchLanguage('zh')">中文</button>
-        <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">English</button>
+        <button class="lang-btn" id="btn-zh" onclick="switchLanguage('zh')">中文</button>
+        <button class="lang-btn active" id="btn-en" onclick="switchLanguage('en')">English</button>
       </div>
     </div>
 
@@ -203,20 +203,61 @@
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
         </svg>
       </div>
-      <h1 id="app-title">跟拍练 (FollowBeat) 隐私政策</h1>
-      <p class="update-date" id="update-date">最后更新日期：2026年9月1日</p>
+      <h1 id="app-title">FollowBeat Privacy Policy</h1>
+      <p class="update-date" id="update-date">Last Updated: September 1, 2026</p>
     </header>
 
     <!-- Content Card -->
     <div class="card" id="privacy-content">
-      <!-- Dynamic Content Loaded by JS -->
+      <div class="highlight-box">
+        <strong>Our Commitment:</strong> FollowBeat is a privacy-first workout rhythm companion. We do not collect your personal identifiable information, we do not track your activity across apps, and we will never sell or share your fitness data with third parties.
+      </div>
+
+      <h2 class="section-title"><span>1.</span> Information We Collect</h2>
+      <p><strong>We do not collect any personally identifiable information.</strong></p>
+      <ul>
+        <li><strong>No Account Required:</strong> You do not need to register, log in, or provide personal details to use FollowBeat.</li>
+        <li><strong>Workout Data:</strong> All custom beats, actions, daily plans, and training records are strictly stored locally on your device and inside your private Apple iCloud container.</li>
+      </ul>
+
+      <h2 class="section-title"><span>2.</span> Data Storage & iCloud Sync</h2>
+      <p>To provide seamless synchronization across your iOS devices, FollowBeat utilizes Apple's official <strong>iCloud (CloudKit / SwiftData)</strong> private database.</p>
+      <ul>
+        <li>Your data is encrypted and stored in your private iCloud space, accessible only by devices signed into your Apple ID.</li>
+        <li>The developer and third parties have no access and cannot read your personal iCloud data.</li>
+      </ul>
+
+      <h2 class="section-title"><span>3.</span> Device Permissions</h2>
+      <p>FollowBeat may request standard iOS permissions solely for core functionality:</p>
+      <ul>
+        <li><strong>Photo Library Add Access (NSPhotoLibraryAddUsageDescription):</strong> Used only when you tap "Save Workout Poster" to save the generated summary image to your Photos. We never scan or read your existing photos.</li>
+        <li><strong>Notifications:</strong> Used only if you enable training reminders to notify you at your scheduled workout time.</li>
+      </ul>
+
+      <h2 class="section-title"><span>4.</span> Third-Party SDKs & Advertising</h2>
+      <p>FollowBeat is a pure and ad-free application:</p>
+      <ul>
+        <li>Contains zero third-party advertising or tracking SDKs.</li>
+        <li>Does not request or track Apple's IDFA (Identifier for Advertisers).</li>
+        <li>Never shares data with data brokers or advertising networks.</li>
+      </ul>
+
+      <h2 class="section-title"><span>5.</span> Children's Privacy</h2>
+      <p>Our application is rated 4+ and suitable for all audiences. We do not knowingly collect personal information from children under 13.</p>
+
+      <h2 class="section-title"><span>6.</span> Policy Updates</h2>
+      <p>If we update this Privacy Policy, changes will be posted directly to this page and noted in App Store release notes.</p>
+
+      <h2 class="section-title"><span>7.</span> Contact Us</h2>
+      <p>If you have any questions or feedback regarding this Privacy Policy, please contact us at:<br>
+      📧 <strong><a href="mailto:dudulu.moe@gmail.com" class="contact-link">dudulu.moe@gmail.com</a></strong></p>
     </div>
 
     <!-- Footer -->
     <footer>
       <p id="footer-copy">© 2026 FollowBeat. All Rights Reserved.</p>
       <p style="margin-top: 10px;">
-        <a href="index.html" style="color: var(--text-muted); text-decoration: underline;">技术支持与帮助中心 (Support & Help)</a>
+        <a href="index.html" style="color: var(--text-muted); text-decoration: underline;">Support & Help Center</a>
       </p>
     </footer>
   </div>
@@ -326,7 +367,7 @@
     };
 
     function switchLanguage(lang) {
-      const data = privacyData[lang] || privacyData.zh;
+      const data = privacyData[lang] || privacyData.en;
       
       document.getElementById('page-title').innerText = data.pageTitle;
       document.getElementById('app-title').innerText = data.appTitle;
@@ -336,27 +377,16 @@
 
       document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-      localStorage.setItem('followbeat_lang', lang);
     }
 
+    // Default to English on this dedicated English page unless user explicitly chooses zh
     (function initLanguage() {
       const urlParams = new URLSearchParams(window.location.search);
-      const urlLang = urlParams.get('lang') || (window.location.hash.toLowerCase().includes('en') ? 'en' : (window.location.hash.toLowerCase().includes('zh') ? 'zh' : null));
-      if (urlLang === 'en' || urlLang === 'zh') {
-        switchLanguage(urlLang);
-        return;
-      }
-      const savedLang = localStorage.getItem('followbeat_lang');
-      if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
-        switchLanguage(savedLang);
+      const urlLang = urlParams.get('lang');
+      if (urlLang === 'zh') {
+        switchLanguage('zh');
       } else {
-        const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-        if (browserLang.startsWith('zh')) {
-          switchLanguage('zh');
-        } else {
-          switchLanguage('en');
-        }
+        switchLanguage('en');
       }
     })();
   </script>

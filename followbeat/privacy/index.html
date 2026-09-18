@@ -341,6 +341,12 @@
     }
 
     (function initLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang') || (window.location.hash.toLowerCase().includes('en') ? 'en' : (window.location.hash.toLowerCase().includes('zh') ? 'zh' : null));
+      if (urlLang === 'en' || urlLang === 'zh') {
+        switchLanguage(urlLang);
+        return;
+      }
       const savedLang = localStorage.getItem('followbeat_lang');
       if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
         switchLanguage(savedLang);
