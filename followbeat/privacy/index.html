@@ -207,9 +207,50 @@
       <p class="update-date" id="update-date">最后更新日期：2026年9月1日</p>
     </header>
 
-    <!-- Content Card -->
+    <!-- Content Card: Static Chinese by default -->
     <div class="card" id="privacy-content">
-      <!-- Dynamic Content Loaded by JS -->
+      <div class="highlight-box">
+        <strong>核心承诺：</strong>「跟拍练 (FollowBeat)」是一款注重隐私的单机/个人工具类 App。我们不会收集您的个人身份信息，不会追踪您的网络活动，绝不向任何第三方出售或共享您的个人运动数据。
+      </div>
+
+      <h2 class="section-title"><span>1.</span> 我们收集哪些信息？</h2>
+      <p><strong>我们不收集任何个人敏感信息。</strong></p>
+      <ul>
+        <li><strong>无需注册账号：</strong>本 App 无需注册第三方账号，无需绑定手机号或社交账号即可使用全部功能。</li>
+        <li><strong>个人运动数据：</strong>您在 App 中创建的节拍方案、动作组、每日计划与历史训练记录仅存储在您的设备本地及您个人的私有 Apple iCloud 容器中。</li>
+      </ul>
+
+      <h2 class="section-title"><span>2.</span> 数据存储与 iCloud 同步</h2>
+      <p>为了在您的多台 iOS 设备间无缝同步您的自定义节拍与训练历史，「跟拍练」使用了 Apple 官方提供的 <strong>iCloud (CloudKit / SwiftData)</strong> 私有数据库服务。</p>
+      <ul>
+        <li>这些数据直接加密保存在您的个人 iCloud 空间中，只有您登录了相同 Apple ID 的设备能够访问。</li>
+        <li>开发者及任何第三方均无权、也无法访问或读取您在 iCloud 中的任何数据。</li>
+      </ul>
+
+      <h2 class="section-title"><span>3.</span> 系统权限使用说明</h2>
+      <p>为了实现核心功能，App 可能会在特定场景请求以下系统权限：</p>
+      <ul>
+        <li><strong>相册保存权限 (NSPhotoLibraryAddUsageDescription)：</strong>仅在您主动点击“保存训练战报海报”时使用，用于将生成的打卡图片保存到您的系统相册。我们不会读取或扫描您相册中的其他照片。</li>
+        <li><strong>通知权限：</strong>仅在您主动开启训练提醒时使用，用于在设定的时间向您发送每日跟拍训练通知。</li>
+      </ul>
+
+      <h2 class="section-title"><span>4.</span> 第三方 SDK 与广告</h2>
+      <p>「跟拍练」是一个纯净无广告的应用：</p>
+      <ul>
+        <li>不包含任何第三方广告追踪 SDK。</li>
+        <li>不包含任何跨应用追踪（IDFA）代码。</li>
+        <li>不与数据经纪商或广告联盟分享数据。</li>
+      </ul>
+
+      <h2 class="section-title"><span>5.</span> 儿童隐私保护</h2>
+      <p>本 App 适合所有年龄段（4+）使用。我们不会有意收集或索取 13 岁以下儿童的任何个人信息。</p>
+
+      <h2 class="section-title"><span>6.</span> 隐私政策的更新</h2>
+      <p>如果我们对本隐私政策进行任何实质性修改，将通过更新本页面并在 App Store 版本说明中进行提示。</p>
+
+      <h2 class="section-title"><span>7.</span> 联系我们</h2>
+      <p>如果您对本隐私政策有任何疑问、意见或建议，请随时通过电子邮件与我们联系：<br>
+      📧 <strong><a href="mailto:dudulu.moe@gmail.com" class="contact-link">dudulu.moe@gmail.com</a></strong></p>
     </div>
 
     <!-- Footer -->
@@ -336,27 +377,16 @@
 
       document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-      localStorage.setItem('followbeat_lang', lang);
     }
 
+    // Default to Chinese on this standard page unless URL explicitly specifies lang=en
     (function initLanguage() {
       const urlParams = new URLSearchParams(window.location.search);
-      const urlLang = urlParams.get('lang') || (window.location.hash.toLowerCase().includes('en') ? 'en' : (window.location.hash.toLowerCase().includes('zh') ? 'zh' : null));
-      if (urlLang === 'en' || urlLang === 'zh') {
-        switchLanguage(urlLang);
-        return;
-      }
-      const savedLang = localStorage.getItem('followbeat_lang');
-      if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
-        switchLanguage(savedLang);
+      const urlLang = urlParams.get('lang');
+      if (urlLang === 'en') {
+        switchLanguage('en');
       } else {
-        const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-        if (browserLang.startsWith('zh')) {
-          switchLanguage('zh');
-        } else {
-          switchLanguage('en');
-        }
+        switchLanguage('zh');
       }
     })();
   </script>
